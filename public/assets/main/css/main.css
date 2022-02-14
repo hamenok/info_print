@@ -1,0 +1,28 @@
+.form-login {
+    width: 100%;
+    padding: 30px;
+    border-radius: 5px;
+    margin: 30% auto;
+}
+.nav-item img {
+    width:100px;
+    height:100px;
+    margin-bottom:20px;
+}
+
+nav.sidebar{
+    position: fixed;
+    height: 100vh;
+    z-index: 1;
+}
+
+.itemTag{
+    display:flex;
+    position:relative;
+}
+
+.itemTag .close {
+   
+   align-items: center;
+   
+    }
