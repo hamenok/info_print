@@ -1,28 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap");
+body {
+    --bs-body-font-family: "Work Sans", sans-serif;
+    font-family: "Work Sans", sans-serif;
+}
 .form-login {
     width: 100%;
     padding: 30px;
     border-radius: 5px;
     margin: 30% auto;
 }
-.nav-item img {
-    width:100px;
-    height:100px;
-    margin-bottom:20px;
+
+html, .container-fluid {
+    background-color: #1d222e;
+    color: #8590A5;
 }
 
-nav.sidebar{
-    position: fixed;
-    height: 100vh;
-    z-index: 1;
+.container-fluid .form-login {
+    background-color: #252b3b;
 }
 
-.itemTag{
-    display:flex;
-    position:relative;
+input.form-control {
+    background-color: #2B3244;
+    border: none;
+    color: #fff;
+}
+input.form-control:focus {
+    background-color: #2B3244;
+    border: none;
+    color: #fff;
 }
 
-.itemTag .close {
-   
-   align-items: center;
-   
-    }

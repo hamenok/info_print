@@ -20,7 +20,12 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'attr' => ['class' => 'form-control mb-3']
+                'attr' => [
+                    'class' => 'form-control mb-3'
+                ],
+                'label_attr' => [
+                    'class' => 'form-label'
+                ]
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
@@ -31,15 +36,19 @@ class RegistrationFormType extends AbstractType
                 ],
                 'attr' => ['class' => 'form-check-input'],
                 'label_attr' => [
-                    'class' => 'form-check-label',
+                    'class' => 'form-label',
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password',
-                'class' => 'form-control mb-3'
+                'attr' => [
+                    'autocomplete' => 'new-password',
+                    'class' => 'form-control mb-3'
+                ],
+                'label_attr' => [
+                    'class' => 'form-label'
                 ],
                 'constraints' => [
                     new NotBlank([
@@ -58,7 +67,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'd-grid mt-5 mb-3',
                 ],
                 'label' => 'Register',
-                'attr' => ['class' => 'btn btn-block btn-primary'],
+                'attr' => ['class' => 'btn btn-block btn-success'],
             ])
         ;
     }
