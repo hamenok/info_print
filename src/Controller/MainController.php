@@ -24,6 +24,7 @@ class MainController extends AbstractController
     #[Route('/{_locale<%app.supported_locales%>}/', name: 'home')]
     public function index(): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         return $this->render('main/index.html.twig', [
             'controller_name' => 'MainController',
         ]);
