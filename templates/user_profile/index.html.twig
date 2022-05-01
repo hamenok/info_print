@@ -1,0 +1,56 @@
+{% extends 'main/index.html.twig' %}
+
+{% block title %}Hello UserProfileController!{% endblock %}
+
+{% block main %}
+
+<link rel="stylesheet" href="{{ asset('assets/main/css/main.css') }}">
+    <div class="d-flex justify-content-center">
+    <div class="card shadow-sm " style="width: 60rem;">
+        <div class="card-header">
+            <strong class="d-inline-block text-primary">{% trans %}USER{% endtrans %} #{{ user.id }}</strong>
+        </div>
+        <div class="col p-4 d-flex flex-row ">
+            <div class="col-md-8">
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>{% trans %}EMAIL{% endtrans %}</td>
+                                <th scope="row">{{ app.user.email }}</th>
+                            </tr>
+                            <tr>
+                                <td>{% trans %}REGISTER DATE{% endtrans %}</td>
+                                <th scope="row">{{ app.user.createdAt|date('Y-m-d H:m:s') }}</th>
+                            </tr>
+                            <tr>
+                                <td>{% trans %}ROLE{% endtrans %}</td>
+                                <th scope="row">
+                                {% set comma = "," %}
+                                    {% for role in app.user.roles %}
+                                        {{ role }} 
+                                        {% if loop.last != true %}
+                                            {{ comma }} 
+                                        {% endif %}
+                                    {% endfor %}
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a href="#" class="btn btn-primary mt-4">{% trans %}EDIT PROFILE{% endtrans %}</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                {% if (app.user.photo) %}
+                    <img src="{{ asset('images/users/') }}{{ app.user.photo }}" class="img-fluid rounded-end"
+                        alt="{% trans %}USER PHOTO{% endtrans %}">
+                {% else %}
+                    <img src="{{ asset('images/users/no-avatar.png') }}" class="img-fluid rounded-end"
+                        alt="{% trans %}PHOTO NOT FOUND{% endtrans %}">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

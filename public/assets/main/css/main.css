@@ -114,3 +114,16 @@ ul.dropdown-menu .dropdown-divider {
 .btn-toggle-nav li a {
     padding-left: 25px;
 }
+
+.card * {
+    background-color: #252b3b;
+}
+
+.card-header {
+    background-color: #252b3b;
+    border: none;
+}
+
+.card { 
+    border: none;
+}

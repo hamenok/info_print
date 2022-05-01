@@ -2,7 +2,7 @@
 
 {% block title %}{% trans %}INFO PRINT{% endtrans %}{% endblock %}
 
-{% block body %}
+{% block side %}
 <div>
     <header class="panels">
         <nav class="navbar navbar-expand-lg">
@@ -53,7 +53,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li>
-                                    <a class="dropdown-item" href="#">{% trans %}My Profile{% endtrans %}</a>
+                                    <a class="dropdown-item" href="{{ path('user_profile', {id: app.user.id}) }}">{% trans %}My Profile{% endtrans %}</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="#">{% trans %}My Collections{% endtrans %}</a>
@@ -125,6 +125,32 @@
                         </ul>
                     </div>
                 </li>
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#service-collapse" aria-expanded="false">
+                        Service
+                    </button>
+                    <div class="collapse" id="service-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="#" class="rounded">View</a></li>
+                            <li><a href="#" class="rounded">Add</a></li>
+                            <li><a href="#" class="rounded">Edit</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#devices-collapse" aria-expanded="false">
+                        Devices
+                    </button>
+                    <div class="collapse" id="devices-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="#" class="rounded">View</a></li>
+                            <li><a href="#" class="rounded">Add</a></li>
+                            <li><a href="#" class="rounded">Edit</a></li>
+                        </ul>
+                    </div>
+                </li>
                 <li class="border-top my-3"></li>
                 <li class="mb-1">
                     <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
@@ -143,9 +169,11 @@
             </ul>
 
         </nav>
+    {% endblock %}
+    {% block body %}
     
     <main class="col-md-10 col-lg-10  ">
-
+{% block main %}
         <p>1fwfww</p>
         <p>fwfww</p>
         <p>fwfww</p>
@@ -179,8 +207,9 @@
         <p>fwfww</p>
         <p>fwfww</p>
 
-
+  {% endblock %}
     </main>
+  
 </div>
 </div>
 {% endblock %}
