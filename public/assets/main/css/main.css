@@ -35,6 +35,7 @@ input.form-control:focus {
     position: sticky;
     top: 0;
     z-index: 2;
+    
 }
 
 .panels a {
@@ -90,24 +91,40 @@ ul.dropdown-menu .dropdown-divider {
     background-color: #fff;
 }
 
-.sidebar ul {
-    position: sticky;
+
+
+.content {
+    display: flex;
+    
+}
+.content #navbarSupportedContent {
+    position: fixed;
+    width: 250px;
+  
     top:66px;
+    left:0;
+    bottom:0;
     z-index: 1;
-    color: #8590A5;
+    padding-top: 20px;
+    
+
 }
 
-.container-fluid .row nav {
+.content main {
+    margin: 50px auto;
+}
+
+.content nav {
     background-color: #252b3b;
     color: #8590A5;
 }
 
-.container-fluid .row nav li a, .container-fluid .row nav li button {
+.content nav li a, .content nav li button {
     text-decoration: none;
     color: #8590A5;
 }
 
-.container-fluid .row nav li a:hover, .container-fluid .row nav li button:hover {
+.content nav li a:hover, .content nav li button:hover {
     color: #fff;
 }
 
@@ -126,4 +143,10 @@ ul.dropdown-menu .dropdown-divider {
 
 .card { 
     border: none;
+    
 }
+
+.card-body .table {
+    color: #8590A5;
+}
+
