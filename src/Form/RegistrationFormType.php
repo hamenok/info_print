@@ -21,10 +21,10 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'attr' => [
-                    'class' => 'form-control mb-3'
+                    'class' => 'form__input form__input-focus'
                 ],
                 'label_attr' => [
-                    'class' => 'form-label'
+                    'class' => 'form__label'
                 ]
             ])
             ->add('agreeTerms', CheckboxType::class, [
@@ -34,9 +34,8 @@ class RegistrationFormType extends AbstractType
                         'message' => 'You should agree to our terms.',
                     ]),
                 ],
-                'attr' => ['class' => 'form-check-input'],
                 'label_attr' => [
-                    'class' => 'form-label',
+                    'class' => 'form__label',
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
@@ -45,10 +44,10 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'attr' => [
                     'autocomplete' => 'new-password',
-                    'class' => 'form-control mb-3'
+                    'class' => 'form__input form__input-focus'
                 ],
                 'label_attr' => [
-                    'class' => 'form-label'
+                    'class' => 'form__label'
                 ],
                 'constraints' => [
                     new NotBlank([
@@ -63,11 +62,8 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('save', SubmitType::class, [
-                'row_attr' => [
-                    'class' => 'd-grid mt-5 mb-3',
-                ],
                 'label' => 'Register',
-                'attr' => ['class' => 'btn btn-block btn-success'],
+                'attr' => ['class' => 'btn'],
             ])
         ;
     }

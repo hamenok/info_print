@@ -8,18 +8,15 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
             <link rel="stylesheet" href="{{ asset('assets/main/css/main.css') }}">
-            <link rel="stylesheet" href="{{ asset('assets/framework/bootstrap-5.1.3/css/bootstrap.min.css') }}">
         {% endblock %}
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
-            <script src="{{ asset('assets/framework/bootstrap-5.1.3/js/bootstrap.min.js') }}"></script>
             <script src="{{ asset('assets/main/js/jquery-3.6.0.min.js') }}"></script>
             <script src="{{ asset('assets/main/js/main.js') }}"></script>
         {% endblock %}
     </head>
     <body>
-        {% block side %}{% endblock %}
         {% block body %}{% endblock %}
     </body>
 </html>

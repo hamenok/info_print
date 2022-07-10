@@ -2,224 +2,95 @@
 
 {% block title %}{% trans %}INFO PRINT{% endtrans %}{% endblock %}
 
-{% block side %}
-<div>
-    <header class="panels">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="{{ path('home') }}"><img src="{{ asset('images/logo/logo.png') }}"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                    <div class="navbar-nav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    {% if (app.request.locale|locale_name(app.request.locale)|u.title ) == "English" %}
-                                    <img class="flag" src="{{ asset('images/flags/us.jpg') }}">
-                                    {% else %}
-                                    <img class="flag" src="{{ asset('images/flags/russia.jpg') }}">
-                                    {% endif %}
-                                    {{ app.request.locale|locale_name(app.request.locale)|u.title }}
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-language">
-                                    <a class="dropdown-item" href="{{ path('lang', {loc: 'en'}) }}">
-                                        <img class="flag" src="{{ asset('images/flags/us.jpg') }}">
-                                        English
-                                    </a>
-                                    <a class="dropdown-item" href="{{ path('lang', {loc: 'ru'}) }}">
-                                        <img class="flag" src="{{ asset('images/flags/russia.jpg') }}">
-                                        Russian
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                        {% if is_granted('ROLE_USER') %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ app.user.email }}
-                                {% if (app.user.photo) %}
-                                <img src="{{ asset('images/users/') }}{{ app.user.photo }}"
-                                    class="rounded-circle smallAva" alt="User photo">
-                                {% else %}
-                                <img src="{{ asset('images/users/no-avatar.png') }}" class="rounded-circle smallAva"
-                                    alt="User photo">
-                                {% endif %}
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li>
-                                    <a class="dropdown-item" href="{{ path('user_profile', {id: app.user.id}) }}">{% trans %}My Profile{% endtrans %}</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">{% trans %}My Collections{% endtrans %}</a>
-                                </li>
-                                {% if is_granted('ROLE_ADMIN') %}
-                                <li>
-                                    <a class="dropdown-item" href="#">{% trans %}Admin panel{% endtrans %}</a>
-                                </li>
-                                {% endif %}
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li>
-                                    <a class="dropdown-item"
-                                        href="{{ path('app_logout') }}">{% trans %}LOGOUT{% endtrans %}</a>
-                                </li>
-                            </ul>
-                        </li>
+{% block body %}
+    <header class="header">
+        <div class="header-logo">
+            <a href="{{ path('home') }}">
+                <img src="{{ asset('images/logo/logo.png') }}" alt="На главную">
+            </a>
+        </div>
+        <nav class="header-menu">
+            <ul class="menu__list">
+                <li class="menu__item lang-menu">
+                    <a href="#" class="lang-menu__btn dropdown-icon" title="Current language">
+                        {% if (app.request.locale|locale_name(app.request.locale)|u.title ) == "English" %}
+                            <img class="flag" src="{{ asset('images/flags/us.jpg') }}">
+                        {% else %}
+                            <img class="flag" src="{{ asset('images/flags/russia.jpg') }}">
                         {% endif %}
-
+                            {{ app.request.locale|locale_name(app.request.locale)|u.title }}
+                    </a>
+                    <div class="lang-menu__items">
+                        <a href="{{ path('lang', {loc: 'en'}) }}" title="English language">
+                            <img src="{{ asset('images/flags/us.jpg') }}" alt="English">
+                            English
+                        </a>
+                        <a href="{{ path('lang', {loc: 'ru'}) }}" title="Russian language">
+                            <img src="{{ asset('images/flags/russia.jpg') }}" alt="Russian">
+                            Russian
+                        </a>
                     </div>
-                </div>
-            </div>
+                </li>
+                {% if is_granted('ROLE_USER') %}
+                <li class="menu__item user-menu">
+                    <a href="#" class="user-menu__btn dropdown-icon" title="User menu">
+                        {{ app.user.email }}
+                        {% if (app.user.photo) %}
+                            <img src="{{ asset('images/users/') }}{{ app.user.photo }}" alt="User photo">
+                        {% else %}
+                            <img src="{{ asset('images/users/no-avatar.png') }}" alt="User photo">
+                        {% endif %}
+                    </a>
+                    <div class="user-menu__items">
+                        <a href="{{ path('user_profile', {id: app.user.id}) }}" title="My profile">{% trans %}My Profile{% endtrans %}</a>
+                        <hr>
+                        <a href="{{ path('app_logout') }}">{% trans %}LOGOUT{% endtrans %}</a>
+                    </div>
+                </li>
+                {% endif %}
+            </ul>
         </nav>
     </header>
-   <div class="content">
-    
-        <nav id="navbarSupportedContent" class="col-md-2 col-lg-2 d-md-block sidebar collapse ">
+    <main class="page">
+        <div class="sidebar">
+            <nav class="sidebar-menu">
+                <ul class="menu__list">
+                    <li class="menu__item"><a href="{{ path('home') }}" class="menu__link"><img src="{{ asset('images/icon/dashboard.svg') }}" alt="" class="menu__icon">Dashboard</a></li>
+                    <li class="menu__item device-submenu">
+                        <a href="#" class="menu-link dropdown-icon"><img src="{{ asset('images/icon/devices.svg') }}" alt="" class="menu__icon">Devices</a>
+                        <ul class="menu-sub__list">
+                            <li class="menu-sub__item"><a href="#" class="menu-sub__link">View</a></li>
+                            {% if is_granted('ROLE_ADMIN') %}
+                            <li class="menu-sub__item"><a href="#" class="menu-sub__link">Edit</a></li>
+                            {% endif %}
+                            <li class="menu-sub__item"><a href="#" class="menu-sub__link">Manufacturer</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu__item"><a href="#" class="menu__link"><img src="{{ asset('images/icon/users.svg') }}" alt="" class="menu__icon">Users</a></li>
+                    <li class="menu__item"><a href="#" class="menu__link"><img src="{{ asset('images/icon/services.svg') }}" alt="" class="menu__icon">Services</a></li>
+                    <li class="menu__item"><a href="#" class="menu__link"><img src="{{ asset('images/icon/reports.svg') }}" alt="" class="menu__icon">Reports</a></li>
+                    <li class="menu__item"><a href="#" class="menu__link"><img src="{{ asset('images/icon/location.svg') }}" alt="" class="menu__icon">Locations</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="content">
+            <section class="content-body">
+                {% block content %}
+                
+                <h1 class="title">View device</h1>
+                            <h1 class="title">View device</h1>
+                            <h1 class="title">View device</h1>
+                            <h1 class="title">View device</h1><h1 class="title">View device</h1>
+                            <h1 class="title">View device</h1>
+                            <h1 class="title">View device</h1>
+                            
+                            <div class="tables">
+                                Test table
+                            </div>
 
-            <ul class="list-unstyled ps-0">
-                <li class="mb-1">
-                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-                        data-bs-target="#home-collapse" aria-expanded="true">
-                        Home
-                    </button>
-                    <div class="collapse" id="home-collapse">
-                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                            <li><a href="#" class="rounded">Overview</a></li>
-                            <li><a href="#" class="rounded">Updates</a></li>
-                            <li><a href="#" class="rounded">Reports</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="mb-1">
-                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-                        data-bs-target="#dashboard-collapse" aria-expanded="false">
-                        Dashboard
-                    </button>
-                    <div class="collapse" id="dashboard-collapse">
-                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                            <li><a href="#" class="rounded">Overview</a></li>
-                            <li><a href="#" class="rounded">Weekly</a></li>
-                            <li><a href="#" class="rounded">Monthly</a></li>
-                            <li><a href="#" class="rounded">Annually</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="mb-1">
-                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-                        data-bs-target="#orders-collapse" aria-expanded="false">
-                        Orders
-                    </button>
-                    <div class="collapse" id="orders-collapse">
-                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                            <li><a href="#" class="rounded">New</a></li>
-                            <li><a href="#" class="rounded">Processed</a></li>
-                            <li><a href="#" class="rounded">Shipped</a></li>
-                            <li><a href="#" class="rounded">Returned</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="mb-1">
-                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-                        data-bs-target="#service-collapse" aria-expanded="false">
-                        Service
-                    </button>
-                    <div class="collapse" id="service-collapse">
-                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                            <li><a href="#" class="rounded">View</a></li>
-                            <li><a href="#" class="rounded">Add</a></li>
-                            <li><a href="#" class="rounded">Edit</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="mb-1">
-                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-                        data-bs-target="#devices-collapse" aria-expanded="false">
-                        Devices
-                    </button>
-                    <div class="collapse" id="devices-collapse">
-                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                            <li><a href="#" class="rounded">View</a></li>
-                            <li><a href="#" class="rounded">Add</a></li>
-                            <li><a href="#" class="rounded">Edit</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="border-top my-3"></li>
-                <li class="mb-1">
-                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-                        data-bs-target="#account-collapse" aria-expanded="false">
-                        Account
-                    </button>
-                    <div class="collapse" id="account-collapse">
-                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                            <li><a href="#" class="rounded">New...</a></li>
-                            <li><a href="#" class="rounded">Profile</a></li>
-                            <li><a href="#" class="rounded">Settings</a></li>
-                            <li><a href="#" class="rounded">Sign out</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-
-        </nav>
-    {% endblock %}
-    {% block body %}
-    
-    <main class="col-md-6 col-lg-6">
-        {% block main %}
-            
-                <p>1fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-                <p>fwfww</p>
-           
-        {% endblock %}
+                {% endblock %}
+            </section>
+                <footer class="content-footer">2022 © hamenok</footer>
+        </div>
     </main>
-  
-</div>
-
-{% endblock %}
+{% endblock %}  
