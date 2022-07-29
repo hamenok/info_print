@@ -15,7 +15,7 @@
                         {{ app.user.email }}, <a href="{{ path('app_logout') }}">{% trans %}Logout{% endtrans %}</a>
                     </h1>
                 {% else %}
-                    <form action="{{ path('login') }}" method="post">
+                    <form action="{{ path('login') }}" method="post" autocomplete="off">
                         <h1 class="title">{% trans %}Login{% endtrans %}</h1>
                         <div class="form__controls">
                             <div class="email">
@@ -32,6 +32,7 @@
                                     <input type="checkbox" name="_remember_me" checked />
                                     {% trans %}Remember me{% endtrans %}
                                 </label>
+                                <a href="{{ path('app_register') }}" class="reg_link">{% trans %}Registration{% endtrans %}</a>
                             </div>
                         </div>
 
