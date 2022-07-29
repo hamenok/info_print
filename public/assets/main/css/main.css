@@ -228,17 +228,13 @@ body {
 }
 /*------------LOGIN-------------------------*/
 .form {
-   
-    
     display: flex;
     align-items:center;
     justify-content: center;
-   
     min-height: 100%;
 }
 .form-block {
     width: 490px;
-    
     box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
     background-color: var(--second-background-color);
     padding: 40px 30px;
@@ -328,6 +324,7 @@ background-color:  var(--bs-success-hover);
 }
 .btn-success {
 }
+
 /*------------FORM-REGISTRATIONS------------*/
 
 .form .agree-terms {
